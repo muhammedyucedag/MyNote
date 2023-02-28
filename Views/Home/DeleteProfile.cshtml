@@ -1,0 +1,40 @@
+﻿@model ProfileInfoEditViewModel
+
+@{
+    ViewData["Title"] = "Profil Kaldır";
+    int userId = ViewContext.HttpContext.Session.GetInt32(Constants.UserId).Value;
+
+}
+
+<div class="row p-3">
+    <div class="col">
+        <h3 class="display-5">Kullanıcı Hesabı Kaldır</h3>
+    </div>
+</div>
+
+<div class="row p-3">
+    <div class="col-3 text-center">
+        <img src="/uploads/profile_@(userId).jpg" class="rounded-circle img-thumbnail" alt="" style="object-fit: cover;
+    width: 10rem;
+    height: 10rem;" />
+    </div>
+    <div class="col-4">
+       <h3 class="display-5 mb-4"> @Model.Fullname </h3>
+        <div class="mb-3">
+            <div><b>Kullanıcı Adı</b></div>
+            <div>@Model.Username</div>
+        </div>
+        <div class="mb-3">
+            <div><b>E-Posta Adresi</b></div>
+            <div><a href="mailto:@Model.Email" target="_blank">@Model.Email</a></div>
+        </div>
+        <div class="mb-3 ">
+            <p class="text-danger fw-bold">
+                İlgili hesabınızı kaldırmak istediğinize emin misiniz? (bu işlem geri alınamaz!)
+            </p>
+            <form method="post" asp-action="DeleteProfile">
+                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash me-2"></i>Hesabı Kaldır</button>
+            </form>
+        </div>
+    </div>
+</div>

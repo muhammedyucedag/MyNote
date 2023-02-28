@@ -1,0 +1,52 @@
+﻿@model UserEditViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcı Güncelle";
+    int id = ViewBag.Id;
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div> @*classların hatalarını değil de diğer hataları göster*@
+        <form method="post" asp-route="/User/Edit/@id">
+            <div class="mb-3">
+                <label asp-for="Fullname" class="form-label fw-bold "></label>
+                <input asp-for="Fullname" class="form-control" placeholder="">
+            </div>
+
+            <span asp-validation-for="Username" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label fw-bold "></label>
+                <input asp-for="Username" class="form-control" placeholder="@NameData.GetTitleName()">
+            </div>
+
+            <span asp-validation-for="Email" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-bold "></label>
+                <input asp-for="Email" class="form-control" placeholder="@NetworkData.GetEmail()">
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="IsActive" class="form-check-input">
+                <label asp-for="IsActive" class="form-check-label"></label>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="IsAdmin" class="form-check-input">
+                <label asp-for="IsAdmin" class="form-check-label"></label>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn-sm "><i class="fa fa-save me-2"></i>Kaydet</button>
+                <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+            </div>
+        </form>
+
+
+    </div>
+</div>

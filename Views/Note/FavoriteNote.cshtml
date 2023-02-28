@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Note>
+
+@{
+    ViewData["Title"] = "Favorilerim";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col table-responsive">
+        <table class="table table-hover table-sm small">
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Başlık</th>
+                    <th class="text-center">Favori Sayısı</th>
+                    <th class="text-center">Yorum Sayısı</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null || Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div><h5 class="mt-4">Herhangi bir veri bulunamadı!</h5>.</div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (Note note in Model)
+                    {
+                        <tr>
+                            <td>@note.Category.Name</td>
+                            <td>@note.Title</td>
+                            <td class="text-center">@note.Likes.Count</td>
+                            <td class="text-center">@note.Comments.Count</td>
+
+                            <td class="text-center ">
+                                <font color="#b036b0" title="Yorum Detay"><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_notecomments" onclick="loadNoteComments(@note.Id)"><i class="fa fa-comment"></i>
+
+                        </button>
+
+                        </font>
+                                <button data-bs-toggle="modal" data-bs-target="#modal_notedetail" class="btn btn-secondary btn-sm" onclick="loadNoteDetail(@note.Id)">
+                                    <i class="fa fa-info-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<partial name="_TemplatesPartial" />
+
+
+<div class="modal fade" id="modal_notecomments" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yorumlar</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> <i class="fa fa-times me-2"></i>Kapat</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_notedetail" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5 ">Not İçeriği</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> <i class="fa fa-times me-2"></i>Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+

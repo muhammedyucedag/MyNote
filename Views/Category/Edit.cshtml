@@ -1,0 +1,32 @@
+﻿@model CategoryViewModel
+@{
+    ViewData["Title"] = "Kategori Güncelle";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div> @*classların hatalarını değil de diğer hataları göster*@
+        <form method="post">
+            <span asp-validation-for="Name" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label fw-bold "></label>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label fw-bold"></label>
+                <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn-sm "><i class="fa fa-save me-2"></i>Kaydet</button>
+                <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+            </div>
+        </form>
+    </div>
+</div>

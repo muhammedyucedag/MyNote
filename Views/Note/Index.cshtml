@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Note>
+
+@{
+    ViewData["Title"] = "Notlarım";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <a class="btn btn-primary btn-sm" asp-action="Create"><i class="fa fa-plus me-2"></i>Not Ekle</a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col table-responsive">
+        <table class="table table-hover table-sm small">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Category.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.IsDraft)</th>
+                    <th class="text-center">Favori Sayısı</th>
+                    <th class="text-center">Yorum Sayısı</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedUser)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                    <th>@Html.DisplayNameFor(model => model.ModifiedUser)</th>
+                    <th>@Html.DisplayNameFor(model => model.ModifiedAt)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null || Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div><h5 class="mt-4">Herhangi bir veri bulunamadı!</h5>.</div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (Note note in Model)
+                    {
+                        <tr>
+                            <td>@note.Category.Name</td>
+                            <td>@note.Title</td>
+                            <td class="text-center">
+                                <i class="fa fa-@(note.IsDraft ? "check text-success" : "times text-danger")"></i>
+                            </td>
+                            <td class="text-center">@note.Likes.Count</td>
+                            <td class="text-center">@note.Comments.Count</td>
+
+                            <td>@note.CreatedUser</td>
+                            <td>@note.CreatedAt</td>
+                            <td>@note.ModifiedUser</td>
+                            <td>@note.ModifiedAt</td>
+                            <td class="text-center ">
+                                <font color="#b036b0" title="Yorum Detay"><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_notecomments" onclick="loadNoteComments(@note.Id)"><i class="fa fa-comment"></i></button></font>
+
+                                <font color="#b036b0" title="Not Güncelleme"><a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@note.Id"><i class="fa fa-edit"></i></a></font>
+
+                                <font color="#b036b0" title="Not Detay"><a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@note.Id"><i class="fa fa-search"></i></a></font>
+
+                                <font color="#b036b0" title="Not Sil"><a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@note.Id"><i class="fa fa-trash"></i></a></font>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<partial name="_TemplatesPartial" />
+
+<div class="modal fade" id="modal_notecomments" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yorumlar</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> <i class="fa fa-times me-2"></i>Kapat</button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model EBulletinEditViewModel
+@{
+    ViewData["Title"] = "E-Bülten E-Posta Güncelle";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div> @*classların hatalarını değil de diğer hataları göster*@
+        <form method="post">
+            <span asp-validation-for="Email" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-bold "></label>
+                <input asp-for="Email" class="form-control">
+            </div>
+            <div class="mb-3 form-check">
+                <input asp-for="Banned" class="form-check-input">
+                <label asp-for="Banned" class="form-check-label"></label>
+            </div>
+
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn-sm "><i class="fa fa-save me-2"></i>Kaydet</button>
+                <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model ProfileInfoEditViewModel
+
+@{
+    ViewData["Title"] = "Profil";
+    int userId = ViewContext.HttpContext.Session.GetInt32(Constants.UserId).Value;
+
+}
+
+<div class="row p-3">
+    <div class="col">
+        <h3 class="display-5 border-bottom">Kullanıcı Hesabı</h3>
+    </div>
+</div>
+
+<div class="row p-3">
+    <div class="col-3 text-center">
+        <img src="/uploads/profile_@(userId).jpg" class="rounded-circle img-thumbnail" alt="" style="object-fit: cover;
+    width: 10rem;
+    height: 10rem;" />
+    </div>
+    <div class="col-4">
+        <h3 class="display-5 mb-4"> @Model.Fullname </h3>
+        <div class="mb-3">
+            <div><b>Kullanıcı Adı</b></div>
+            <div>@Model.Username</div>
+        </div>
+        <div class="mb-3">
+            <div><b>E-Posta Adresi</b></div>
+            <div><a href="mailto:@Model.Email" target="_blank">@Model.Email</a></div>
+        </div>
+    </div>
+</div>

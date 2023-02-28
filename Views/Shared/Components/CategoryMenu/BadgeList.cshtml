@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Category>
+
+@foreach (Category category in Model)
+{
+
+    <a class="badge bg-secondary" asp-action="Index" asp-controller="Home" asp-route-categoryId="@category.Id"><i class="fa fa-th-list me-2"></i>@category.Name</a>
+
+}

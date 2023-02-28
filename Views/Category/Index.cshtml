@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Kategoriler";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <a class="btn btn-primary btn-sm" asp-action="Create"><i class="fa fa-plus me-2"></i>Kategori Ekle</a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col table-responsive">
+        <table class="table table-hover table-sm small">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedUser)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                    <th>@Html.DisplayNameFor(model => model.ModifiedUser)</th>
+                    <th>@Html.DisplayNameFor(model => model.ModifiedAt)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null || Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div><h5 class="mt-4">Herhangi bir veri bulunamadı!</h5>.</div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (Category category in Model)
+                    {
+                        <tr>
+                            <td>@category.Name</td>
+                            <td>@category.Description</td>
+                            <td>@category.CreatedUser</td>
+                            <td>@category.CreatedAt</td>
+                            <td>@category.ModifiedUser</td>
+                            <td>@category.ModifiedAt</td>
+                            <td class="text-center ">
+                                <font color="#b036b0" title="Kategori Güncelleme"><a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@category.Id"><i class="fa fa-edit"></i></a></font>
+
+                                <font color="#b036b0" title="Kategori Detay"><a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@category.Id"><i class="fa fa-search"></i></a></font>
+
+                                <font color="#b036b0" title="Kategori Sil"><a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@category.Id"><i class="fa fa-trash"></i></a></font>
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model NoteViewModel
+
+@{
+    ViewData["Title"] = "Not Güncelle";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div> @*classların hatalarını değil de diğer hataları göster*@
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label fw-bold "></label>
+                <select asp-for="CategoryId" class="form-control"
+                        asp-items="@((List<SelectListItem>)ViewData["categories"])">
+
+                    <option selected>Seçiniz</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label fw-bold "></label>
+                <input asp-for="Title" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Summary" class="form-label fw-bold"></label>
+                <textarea asp-for="Summary" rows="3" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Detail" class="form-label fw-bold"></label>
+                <textarea asp-for="Detail" rows="6" class="form-control"></textarea>
+            </div>
+            <div class="mb-3 form-check">
+                <input asp-for="IsDraft" class="form-check-input">
+                <label asp-for="IsDraft" class="form-check-label"></label>
+            </div>
+            <div class="">
+                <button type="submit" class="btn btn-primary btn-sm "><i class="fa fa-plus me-2"></i>Kaydet</button>
+                <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+        </form>
+    </div>
+</div>

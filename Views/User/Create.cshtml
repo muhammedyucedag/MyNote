@@ -1,0 +1,61 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcı Oluştur";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div> @*classların hatalarını değil de diğer hataları göster*@
+        <form method="post" asp-action="Create">
+            <div class="mb-3">
+                <label asp-for="Fullname" class="form-label fw-bold "></label>
+                <input asp-for="Fullname" class="form-control" placeholder="@NameData.GetFullName()">
+            </div>
+
+            <span asp-validation-for="Username" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label fw-bold "></label>
+                <input asp-for="Username" class="form-control" placeholder="@NameData.GetTitleName()">
+            </div>
+
+            <span asp-validation-for="Email" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-bold "></label>
+                <input asp-for="Email" class="form-control" placeholder="@NetworkData.GetEmail()">
+            </div>
+
+            <span asp-validation-for="Password" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label fw-bold "></label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="@TextData.GetNumeric(6)">
+            </div>
+
+            <span asp-validation-for="RePassword" class="text-danger small"></span>
+            <div class="mb-3">
+                <label asp-for="RePassword" class="form-label fw-bold "></label>
+                <input asp-for="RePassword" type="password" class="form-control" placeholder="@TextData.GetNumeric(6)">
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="IsActive" class="form-check-input">
+                <label asp-for="IsActive" class="form-check-label"></label>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="IsAdmin" class="form-check-input">
+                <label asp-for="IsAdmin" class="form-check-label"></label>
+            </div>
+            <div class="">
+                <button type="submit" class="btn btn-primary btn-sm "><i class="fa fa-plus me-2"></i>Oluştur</button>
+                <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+            </div>
+        </form>
+    </div>
+</div>

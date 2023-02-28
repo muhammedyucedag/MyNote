@@ -1,0 +1,10 @@
+﻿@model Note
+
+<h4>@Model.Title</h4>
+<p> @Model.Detail </p>
+<p>
+    <div class="text-muted small">
+        <div class="text-end"><i class="fa fa-user me-2"></i>@Model.Owner.Username</div>
+        <div class="text-end"><i class="fa fa-clock me-2"></i>@(Model.ModifiedAt != null ? Model.ModifiedAt : Model.CreatedAt)</div>
+    </div>
+</p>

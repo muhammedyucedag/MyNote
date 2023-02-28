@@ -1,0 +1,56 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Kategori Sil";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <p class="text-danger fw-bold">
+            İlgili kategoriyi silmek istediğinize emin misini? <br />
+            <small class="fw-normal">Bu işlem geri alınamaz ve kategoriye ait yazıların silinmesini gerektirir. </small>
+        </p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <dl class="row">
+            @*datalist*@
+            <dl class="row">
+                @*datalist*@
+                <dt class="col-4">@Html.DisplayNameFor(model => model.Name)</dt>
+                <dd class="col-8">@Model.Name</dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd class="col-8">@Model.Description</dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.CreatedUser)</dt>
+                <dd class="col-8">@Model.CreatedUser</dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.CreatedAt)</dt>
+                <dd class="col-8">@Model.CreatedAt</dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.ModifiedUser)</dt>
+                <dd class="col-8">@Model.ModifiedUser</dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.ModifiedAt)</dt>
+                <dd class="col-8">@Model.ModifiedAt</dd>
+            </dl>
+        </dl>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <form method="post">
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash me-2"></i>Kategori Sil</button>
+            <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+        </form>
+    </div>
+</div>

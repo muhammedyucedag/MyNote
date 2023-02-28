@@ -1,0 +1,54 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+
+.carousel .carousel-control-prev-icon, .carousel .carousel-control-next-icon {
+    /*box-shadow: 2px 2px 15px #000*/
+}
+
+.row .badge {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.login-box {
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 15px #808080
+}
+
+.carousel-box {
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 15px #808080
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.validation-summary-errors ul {
+    list-style-type: none;
+}
+
+.badge:hover {
+    color: white;
+}
+

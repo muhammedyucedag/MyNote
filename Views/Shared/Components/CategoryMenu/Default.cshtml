@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Category>
+
+@foreach (Category category in Model)
+{
+    <li><a class="dropdown-item" asp-action="Index" asp-controller="Home" asp-route-categoryId="@category.Id"><i class="fa-solid fa-list me-2"></i>@category.Name</a></li>
+}

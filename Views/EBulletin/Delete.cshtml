@@ -1,0 +1,48 @@
+﻿@model EBulletin
+@{
+    ViewData["Title"] = "E-Bülten E-Posta Adresi Sil";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <p class="text-danger fw-bold">
+            İlgili e-posta adresini silmek istediğinize emin misiniz? <br />
+            <small class="fw-normal">Bu işlem geri alınamaz ve kategoriye ait yazıların silinmesini gerektirir. </small>
+        </p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <dl class="row">
+            @*datalist*@
+            <dl class="row">
+                @*datalist*@
+                <dt class="col-4">@Html.DisplayNameFor(model => model.Email)</dt>
+                <dd class="col-8">@Model.Email</dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.Banned)</dt>
+                <dd class="col-8"><i class="fa fa-@(Model.Banned ? "check text-success" : "times text-danger")"></i></dd>
+
+                <dt class="col-4">@Html.DisplayNameFor(model => model.CreatedAt)</dt>
+                <dd class="col-8">@Model.CreatedAt</dd>
+
+            </dl>
+        </dl>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <form method="post">
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash me-2"></i> Sil</button>
+            <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model Note
+
+@{
+    int userId = ViewContext.HttpContext.Session.GetInt32(Constants.UserId).GetValueOrDefault();
+    bool isLogin = (userId == 0) ? false : true;
+}
+
+
+@if (Model.Comments != null && Model.Comments.Count > 0)
+{
+    @foreach (Comment comment in Model.Comments)
+    {
+        <div class="d-flex media">
+            <div class="flex-shrink-0">
+                <img src="https://picsum.photos/id/1005/64" class="me-3" alt="@comment.User.Username">
+            </div>
+            <div class="media-body flex-grow-1 ms-3">
+                <h5 class="mt-0">@comment.User.Username</h5>
+                <p class="comment-text">@comment.Text</p>
+                <div class="small text-end text-muted">
+
+                    @if (comment.UserId == userId)
+                    {
+                        <span>
+                            <span class="edit-buttons d-none">
+                                <a href="javascript:void(0)" class="text-success" onclick="updateComment(this,@comment.Id,@Model.Id)"><i class="fa fa-save me-1"></i>Kaydet</a> |
+                                <a href="javascript:void(0)" class="text-danger" onclick="cancelEditComment(this,@Model.Id)"><i class="fa fa-times me-1"></i>Vazgeç</a>
+                            </span>
+                            
+                            <a href="javascript:void(0)" class="text-dark edit-button" onclick="editComment(this)"><i class="fa fa-edit me-1"></i>Düzenle</a> |
+                            <a href="javascript:void(0)" class="text-danger edit-delete-button"
+                             onclick="removeComment(@comment.Id, @Model.Id)"><i class="fa fa-trash me-2"></i>Sil</a> 
+                        </span>
+                    }
+
+                    <i class="fa fa-clock me-2"></i>@(comment.ModifiedAt != null ? comment.ModifiedAt : comment.CreatedAt)
+
+                </div>
+            </div>
+        </div>
+    }
+}
+
+else
+{
+    <div class="text-center">Henüz bu nota yorum yapılmadı.</div>
+}
+
+@if (isLogin)
+{
+    <div class="media mt-4 d-flex">
+        <div class="media-body flex-grow-1 ms-3">
+            <form method="post">
+                <div class="input-group">
+                    <textarea id="txtCommentText" rows="2" class="form-control" placeholder="yorumunuz"></textarea>
+                    <button class="btn btn-primary table-hover btn-sm" type="button" onclick="sendComment(@Model.Id)"><i class="fa fa-send me-2"></i>Gönder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+

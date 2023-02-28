@@ -1,0 +1,74 @@
+﻿@model ProfileInfoEditViewModel
+
+
+@{
+    ViewData["Title"] = "Profil Düzenle";
+    int userId = ViewContext.HttpContext.Session.GetInt32(Constants.UserId).Value;
+}
+
+<style>
+    #duzenle {
+        color: red
+    }
+</style>
+
+<div class="row p-3">
+    <div class="col">
+        <h3 class="display-5" id="duzenle">Kullanıcı Hesabı Düzenle</h3>
+    </div>
+</div>
+
+<div class="row p-3">
+
+    <div class="col-3 text-center">
+        <img src="/uploads/profile_@(userId).jpg" class="rounded-circle img-thumbnail" alt="" style="object-fit: cover;width: 10rem;height: 10rem;"/>
+
+        <form method="post" asp-action="ProfileImageChange" enctype="multipart/form-data">
+            @*veri gönderme işlemlerinde enctpye kullanmalıyız *@
+            <div class="mt-3">
+                <input id="profileImage" name="profileImage" type="file" class="form-control" accept="image/jpg, image/jpeg" />
+                <small>Lütfen sadece jpge, jpg formatında dosya yükleyiniz.</small>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-secondary btn-sm" type="submit"><i class="fa fa-upload me-2"></i>Yükle</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-3 offset-1">
+        <div class="text-danger small text-center mb-3" asp-validation-summary="ModelOnly"></div>
+        @if (ViewData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mb-3">
+                @ViewData["SuccessMessage"]
+            </div>
+        }
+
+        <form method="post" asp-action="ProfileInfoSave">
+            <div class="mb-3">
+                <label asp-for="Fullname" class="form-label fw-bold" ></label>
+                <input asp-for="Fullname" class="form-control" placeholder="Ad Soyad">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-bold"></label>
+                <input asp-for="Email" class="form-control" placeholder="E-posta Adresi">
+               @* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+            </div>
+
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save me-2"></i>Kaydet</button>
+            </div>
+        </form>
+
+        <form method="post" asp-action="ProfilePasswordChange">
+            <div class="mb-3">
+                <label for="pass" class="form-label fw-bold">Şifre</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Şifre">
+            </div>
+
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save me-2"></i>Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>

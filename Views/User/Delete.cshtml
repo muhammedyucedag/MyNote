@@ -1,0 +1,68 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Kullanıcı Sil";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <p class="text-danger fw-bold">
+            İlgili kullanıcıyı silmek istediğinize emin misini? <br />
+        <small class="fw-normal">Bu işlem geri alınamaz ve kullanıcıya ait bilgilerin silinmesini gerektirir. </small>
+        </p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-4">
+        <dl class="row">
+            @*datalist*@
+            <dt class="col-4">@Html.DisplayNameFor(model => model.FullName)</dt>
+            <dd class="col-8">@Model.FullName</dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.Username)</dt>
+            <dd class="col-8">@Model.Username</dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.EMail)</dt>
+            <dd class="col-8">@Model.EMail</dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.IsActive)</dt>
+            <dd class="col-8">
+                <i class="fa fa-@(Model.IsActive ? "check text-success" : "times text-danger")"></i>
+            </dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.IsAdmin)</dt>
+            <dd class="col-8">
+                <i class="fa fa-@(Model.IsAdmin ? "check text-success" : "times text-danger")"></i>
+            </dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.CreatedUser)</dt>
+            <dd class="col-8">@Model.CreatedUser</dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.CreatedAt)</dt>
+            <dd class="col-8">@Model.CreatedAt</dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.ModifiedUser)</dt>
+            <dd class="col-8">@Model.ModifiedUser</dd>
+
+            <dt class="col-4">@Html.DisplayNameFor(model => model.ModifiedAt)</dt>
+            <dd class="col-8">@Model.ModifiedAt</dd>
+
+        </dl>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <form method="post" asp-action="Delete">
+        <button class="btn btn-danger btn-sm"><i class="fa fa-trash me-2"></i>Kullanıcı Sil</button>
+        <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left me-2"></i>Listeye Dön!</a>
+        </form>
+    </div>
+</div>

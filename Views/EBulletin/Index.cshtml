@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EBulletin>
+
+@{
+    ViewData["Title"] = "E-Bülten Posta Adresleri ";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-5 border-bottom">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <a class="btn btn-primary btn-sm" asp-action="SendEmails"><i class="fa fa-paper-plane me-2"></i>E-Posta Mesajı Gönder!</a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col table-responsive">
+        <table class="table table-hover table-sm small">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.Banned)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null || Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div><h5 class="mt-4">Herhangi bir veri bulunamadı!</h5>.</div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (EBulletin bulletin in Model)
+                    {
+                        <tr>
+                            <td>@bulletin.Email</td>
+                            <td class="text-center">
+                                <i class="fa fa-@(bulletin.Banned ? "check text-success" : "times text-danger")"></i>
+                            </td>
+                            <td>@bulletin.CreatedAt</td>
+                            <td class="text-center ">
+                                <font color="#b036b0" title="E-Bülten Güncelleme"><a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@bulletin.Id"><i class="fa fa-edit"></i></a></font>
+
+                                <font color="#b036b0" title="E-Bülten Sil"><a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@bulletin.Id"><i class="fa fa-trash"></i></a></font>
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
